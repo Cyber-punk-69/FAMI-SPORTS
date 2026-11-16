@@ -321,6 +321,32 @@ Connected the item route to the async catalogue, added invalid-ID feedback with 
 - Visit `/items/bat-01` and an invalid ID.
 - Confirm the invalid page does not throw and links back to Shop.
 
+## Step 12 — Home page
+
+### Files created or changed
+
+- `/home/punk/Desktop/WEB/web ass 3/src/pages/Home.jsx`
+- `/home/punk/Desktop/WEB/web ass 3/src/pages/Home.module.css`
+
+### What changed and why
+
+Replaced the route placeholder with an original FAMI SPORTS hero, sport categories, shop call-to-action, and local delivery information.
+
+### Requirements covered
+
+- FR01: the home route now has a meaningful entry experience.
+- FR17: responsive hero type and category grid support narrow and wide layouts.
+- P2 foundation: delivery scope and threshold are introduced early.
+
+### Known issues and fixes
+
+- Featured products will be added after the cart and product selection flow is available.
+
+### Manual checks
+
+- Visit `/` at approximately 390px and 1280px widths.
+- Activate the “Shop equipment” link with keyboard navigation.
+
 ## Requirement status
 
 | Requirement | Status |

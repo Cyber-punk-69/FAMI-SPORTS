@@ -113,6 +113,10 @@ Added twelve stable product records across cricket, football, badminton, tennis,
 
 - Verify each record has an ID, category, price, specs, age group, stock, tags, and image metadata.
 
+### Follow-up fix
+
+- Added `tennis-02` after the initial catalogue count smoke test found only eleven products. The catalogue now meets the 12+ record requirement.
+
 ## Requirement status
 
 | Requirement | Status |

@@ -175,6 +175,37 @@ Added all required route paths with independent page modules and a wildcard not-
 - Visit `/`, `/shop`, `/items/bat-01`, `/cart`, `/checkout`, `/confirmation`, and an unknown path.
 - Use browser Back and Forward between routes.
 
+## Step 7 — Shared layout
+
+### Files created or changed
+
+- `/home/punk/Desktop/WEB/web ass 3/src/App.jsx`
+- `/home/punk/Desktop/WEB/web ass 3/src/components/Header.jsx`
+- `/home/punk/Desktop/WEB/web ass 3/src/components/Header.module.css`
+- `/home/punk/Desktop/WEB/web ass 3/src/components/Footer.jsx`
+- `/home/punk/Desktop/WEB/web ass 3/src/components/Layout.jsx`
+- `/home/punk/Desktop/WEB/web ass 3/src/components/Layout.module.css`
+- `/home/punk/Desktop/WEB/web ass 3/src/styles/global.css`
+
+### What changed and why
+
+Added the shared semantic header, navigation, footer, skip link, focus-visible styling, and outlet layout. Every route now has consistent navigation and an accessible page shell.
+
+### Requirements covered
+
+- FR01: shared navigation across all routes.
+- FR17: skip link, keyboard focus styling, semantic landmarks, and responsive container sizing.
+- Accessibility requirement: image credit is visible in the footer.
+
+### Known issues and fixes
+
+- Cart count and active commerce state will be connected when CartContext is introduced.
+
+### Manual checks
+
+- Navigate using only the keyboard and confirm the skip link and nav links are reachable.
+- Confirm the footer remains at the bottom on short pages.
+
 ## Requirement status
 
 | Requirement | Status |

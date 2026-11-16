@@ -20,8 +20,21 @@ body {
   background: var(--color-surface-muted);
 }
 
-main {
-  max-width: 72rem;
-  margin: 0 auto;
-  padding: 2rem;
+button,
+a,
+input,
+select {
+  font: inherit;
+}
+
+:focus-visible {
+  outline: 3px solid var(--color-focus);
+  outline-offset: 2px;
+}
+
+footer {
+  padding: var(--space-6);
+  color: var(--color-surface);
+  background: var(--color-bg-dark);
+  text-align: center;
 }

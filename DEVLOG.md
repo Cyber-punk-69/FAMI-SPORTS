@@ -206,6 +206,35 @@ Added the shared semantic header, navigation, footer, skip link, focus-visible s
 - Navigate using only the keyboard and confirm the skip link and nav links are reachable.
 - Confirm the footer remains at the bottom on short pages.
 
+## Step 8 — Product cards and grid
+
+### Files created or changed
+
+- `/home/punk/Desktop/WEB/web ass 3/src/components/ProductCard.jsx`
+- `/home/punk/Desktop/WEB/web ass 3/src/components/ProductCard.module.css`
+- `/home/punk/Desktop/WEB/web ass 3/src/components/ProductGrid.jsx`
+- `/home/punk/Desktop/WEB/web ass 3/src/components/ProductGrid.module.css`
+
+### What changed and why
+
+Added reusable product cards and a responsive keyed product grid. Cards expose comparison information early, link to stable item routes, show stock status, and provide an image fallback for missing or failed images.
+
+### Requirements covered
+
+- FR03: stable IDs are used as list keys.
+- FR06 foundation: price, specs, stock, and category are visible.
+- FR17: grid sizing and long-name wrapping support narrow layouts.
+- P2/P3 foundation: stock and comparison information appear before checkout.
+
+### Known issues and fixes
+
+- Product cards are not yet mounted on a populated page; Shop integration follows.
+
+### Manual checks
+
+- Confirm the missing-image product displays “Image unavailable.”
+- Confirm the long product name wraps without horizontal overflow.
+
 ## Requirement status
 
 | Requirement | Status |

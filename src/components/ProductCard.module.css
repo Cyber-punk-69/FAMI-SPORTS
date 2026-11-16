@@ -1,0 +1,94 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid #d6d6d6;
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+}
+
+.imageLink {
+  display: block;
+  height: 12rem;
+  background: #d7d7d7;
+  color: var(--color-text);
+  text-decoration: none;
+}
+
+.image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.imageFallback {
+  display: grid;
+  height: 100%;
+  place-items: center;
+  color: var(--color-text-muted);
+}
+
+.content {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: var(--space-4);
+}
+
+.category {
+  margin: 0;
+  color: var(--color-text-muted);
+  font-size: 0.85rem;
+}
+
+.name {
+  margin: 0;
+  font-size: 1.15rem;
+  overflow-wrap: anywhere;
+}
+
+.price {
+  margin: 0;
+  font-weight: 700;
+}
+
+.specs {
+  display: flex;
+  gap: var(--space-3);
+  margin: 0;
+  color: var(--color-text-muted);
+  font-size: 0.85rem;
+}
+
+.specs div {
+  min-width: 0;
+}
+
+.specs dt,
+.specs dd {
+  display: inline;
+}
+
+.specs dt {
+  font-weight: 700;
+}
+
+.specs dd {
+  margin-left: var(--space-1);
+}
+
+.stock,
+.outOfStock {
+  margin: auto 0 0;
+  font-weight: 700;
+}
+
+.stock {
+  color: var(--color-success);
+}
+
+.outOfStock {
+  color: var(--color-error);
+}

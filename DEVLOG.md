@@ -143,6 +143,38 @@ Added an async mock service with a delay, controllable failure mode, and stock r
 - Confirm `setMockFailure(true)` produces a retryable error.
 - Confirm reducing a known product stock never makes it negative.
 
+## Step 6 — Route skeleton
+
+### Files created or changed
+
+- `/home/punk/Desktop/WEB/web ass 3/src/App.jsx`
+- `/home/punk/Desktop/WEB/web ass 3/src/pages/Home.jsx`
+- `/home/punk/Desktop/WEB/web ass 3/src/pages/Shop.jsx`
+- `/home/punk/Desktop/WEB/web ass 3/src/pages/ItemDetails.jsx`
+- `/home/punk/Desktop/WEB/web ass 3/src/pages/Cart.jsx`
+- `/home/punk/Desktop/WEB/web ass 3/src/pages/Checkout.jsx`
+- `/home/punk/Desktop/WEB/web ass 3/src/pages/Confirmation.jsx`
+- `/home/punk/Desktop/WEB/web ass 3/src/pages/NotFound.jsx`
+
+### What changed and why
+
+Added all required route paths with independent page modules and a wildcard not-found route. The route skeleton establishes the navigation surface before page behavior is implemented.
+
+### Requirements covered
+
+- FR01: required routes are registered with `react-router-dom`.
+- FR02: item-detail route accepts an ID for later validation.
+- FR19 foundation: Vite serves the SPA entry point.
+
+### Known issues and fixes
+
+- Pages are placeholders until their individual milestones are implemented.
+
+### Manual checks
+
+- Visit `/`, `/shop`, `/items/bat-01`, `/cart`, `/checkout`, `/confirmation`, and an unknown path.
+- Use browser Back and Forward between routes.
+
 ## Requirement status
 
 | Requirement | Status |

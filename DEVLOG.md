@@ -89,6 +89,30 @@ Added the red/black theme roles, spacing scale, radius tokens, and global surfac
 
 - Confirm primary actions use the red role and focus states use the focus role when components are added.
 
+## Step 4 — Product catalogue
+
+### Files created or changed
+
+- `/home/punk/Desktop/WEB/web ass 3/src/data/products.js`
+
+### What changed and why
+
+Added twelve stable product records across cricket, football, badminton, tennis, and fitness. The catalogue includes junior products, out-of-stock and low-stock cases, a missing image, and a deliberately long name/description for later layout testing.
+
+### Requirements covered
+
+- FR03: local catalogue with stable IDs and required product fields.
+- FR06 foundation: details/specification data is available for future pages.
+- FR17 foundation: long-content and missing-image cases are represented.
+
+### Known issues and fixes
+
+- Product images use royalty-free Unsplash URLs and will receive fallback handling in the product card milestone.
+
+### Manual checks
+
+- Verify each record has an ID, category, price, specs, age group, stock, tags, and image metadata.
+
 ## Requirement status
 
 | Requirement | Status |

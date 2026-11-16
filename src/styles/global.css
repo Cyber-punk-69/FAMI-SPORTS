@@ -1,7 +1,13 @@
+@import './tokens.css';
+
+html {
+  background: var(--color-surface-muted);
+}
+
 :root {
   font-family: Arial, sans-serif;
-  color: #171717;
-  background: #f5f5f5;
+  color: var(--color-text);
+  background: var(--color-surface-muted);
 }
 
 * {
@@ -11,6 +17,7 @@
 body {
   margin: 0;
   min-width: 320px;
+  background: var(--color-surface-muted);
 }
 
 main {

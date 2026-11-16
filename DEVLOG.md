@@ -65,6 +65,30 @@ Created the Vite React entry point, BrowserRouter boundary, minimal working app 
 - Run `npm run dev` and confirm the FAMI SPORTS shell renders.
 - Run `npm run build` and confirm the production bundle completes.
 
+## Step 3 — Design tokens
+
+### Files created or changed
+
+- `/home/punk/Desktop/WEB/web ass 3/src/styles/tokens.css`
+- `/home/punk/Desktop/WEB/web ass 3/src/styles/global.css`
+
+### What changed and why
+
+Added the red/black theme roles, spacing scale, radius tokens, and global surface styling so later components share one visual foundation.
+
+### Requirements covered
+
+- Theme requirement: named colour roles are defined as CSS variables.
+- FR17 foundation: global sizing remains compatible with narrow viewports.
+
+### Known issues and fixes
+
+- None. The production build passed after the token import was corrected.
+
+### Manual checks
+
+- Confirm primary actions use the red role and focus states use the focus role when components are added.
+
 ## Requirement status
 
 | Requirement | Status |

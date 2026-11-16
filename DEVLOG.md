@@ -117,6 +117,32 @@ Added twelve stable product records across cricket, football, badminton, tennis,
 
 - Added `tennis-02` after the initial catalogue count smoke test found only eleven products. The catalogue now meets the 12+ record requirement.
 
+## Step 5 — Async product loader
+
+### Files created or changed
+
+- `/home/punk/Desktop/WEB/web ass 3/src/services/mockApi.js`
+- `/home/punk/Desktop/WEB/web ass 3/src/hooks/useProducts.js`
+
+### What changed and why
+
+Added an async mock service with a delay, controllable failure mode, and stock reduction control. The `useProducts` hook owns loading/error state, retry behavior, and cleanup-safe async updates for the upcoming shop page.
+
+### Requirements covered
+
+- FR14 foundation: async loading, failure, retry entry point, and demo stock controls.
+- React concept coverage: hooks, async/await, immutable updates, and effect cleanup.
+
+### Known issues and fixes
+
+- Controls are service-level exports for now and will be wired into the labelled UI demo panel later.
+
+### Manual checks
+
+- Confirm the loader returns all catalogue records.
+- Confirm `setMockFailure(true)` produces a retryable error.
+- Confirm reducing a known product stock never makes it negative.
+
 ## Requirement status
 
 | Requirement | Status |

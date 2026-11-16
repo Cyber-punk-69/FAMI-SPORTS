@@ -235,6 +235,34 @@ Added reusable product cards and a responsive keyed product grid. Cards expose c
 - Confirm the missing-image product displays “Image unavailable.”
 - Confirm the long product name wraps without horizontal overflow.
 
+## Step 9 — Shop loading states
+
+### Files created or changed
+
+- `/home/punk/Desktop/WEB/web ass 3/src/components/Loader.jsx`
+- `/home/punk/Desktop/WEB/web ass 3/src/components/ErrorState.jsx`
+- `/home/punk/Desktop/WEB/web ass 3/src/components/EmptyState.jsx`
+- `/home/punk/Desktop/WEB/web ass 3/src/pages/Shop.jsx`
+
+### What changed and why
+
+Connected the asynchronous product hook to the Shop page with distinct loading, failure/retry, empty-dataset, and populated states.
+
+### Requirements covered
+
+- FR14: loading, failure, and Retry behavior are visible.
+- FR15: empty dataset has a distinct message.
+- FR03: loaded records render through the keyed ProductGrid.
+
+### Known issues and fixes
+
+- Search, filtering, and sorting are not yet applied; the current grid intentionally shows the full catalogue.
+
+### Manual checks
+
+- Visit `/shop` during loading and after data appears.
+- Enable the mock failure control once it is wired into the UI, then verify Retry.
+
 ## Requirement status
 
 | Requirement | Status |

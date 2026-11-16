@@ -24,6 +24,47 @@ Initialized the FAMI SPORTS assignment repository with ignore rules for generate
 - Confirm the repository contains no `node_modules`, `dist`, or environment files.
 - Confirm the first commit includes only `.gitignore` and the README stub.
 
+## Step 2 — Vite and React foundation
+
+### Files created or changed
+
+- `/home/punk/Desktop/WEB/web ass 3/package.json`
+- `/home/punk/Desktop/WEB/web ass 3/package-lock.json`
+- `/home/punk/Desktop/WEB/web ass 3/index.html`
+- `/home/punk/Desktop/WEB/web ass 3/vite.config.js`
+- `/home/punk/Desktop/WEB/web ass 3/src/main.jsx`
+- `/home/punk/Desktop/WEB/web ass 3/src/App.jsx`
+- `/home/punk/Desktop/WEB/web ass 3/src/styles/global.css`
+- `/home/punk/Desktop/WEB/web ass 3/src/components/.gitkeep`
+- `/home/punk/Desktop/WEB/web ass 3/src/pages/.gitkeep`
+- `/home/punk/Desktop/WEB/web ass 3/src/context/.gitkeep`
+- `/home/punk/Desktop/WEB/web ass 3/src/hooks/.gitkeep`
+- `/home/punk/Desktop/WEB/web ass 3/src/data/.gitkeep`
+- `/home/punk/Desktop/WEB/web ass 3/src/services/.gitkeep`
+- `/home/punk/Desktop/WEB/web ass 3/src/rules/.gitkeep`
+- `/home/punk/Desktop/WEB/web ass 3/src/utils/.gitkeep`
+- `/home/punk/Desktop/WEB/web ass 3/src/assets/.gitkeep`
+- `/home/punk/Desktop/WEB/web ass 3/tests/.gitkeep`
+
+### What changed and why
+
+Created the Vite React entry point, BrowserRouter boundary, minimal working app shell, package scripts, and the required modular directories. The project is now ready for route and design-system work.
+
+### Requirements covered
+
+- FR01 foundation: BrowserRouter is installed and mounted.
+- FR17 foundation: viewport metadata and overflow-safe base sizing.
+
+### Known issues and fixes
+
+- The initial `create-vite` command cancelled because the folder already contained the required README and log. The equivalent Vite setup was created explicitly without overwriting those files.
+- No tests exist yet; `npm test` currently reports zero tests by design.
+
+### Manual checks
+
+- Run `npm run dev` and confirm the FAMI SPORTS shell renders.
+- Run `npm run build` and confirm the production bundle completes.
+
 ## Requirement status
 
 | Requirement | Status |

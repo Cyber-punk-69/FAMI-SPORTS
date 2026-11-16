@@ -263,6 +263,38 @@ Connected the asynchronous product hook to the Shop page with distinct loading, 
 - Visit `/shop` during loading and after data appears.
 - Enable the mock failure control once it is wired into the UI, then verify Retry.
 
+## Step 10 — Search, filter, and sort
+
+### Files created or changed
+
+- `/home/punk/Desktop/WEB/web ass 3/src/hooks/useDebounce.js`
+- `/home/punk/Desktop/WEB/web ass 3/src/components/SearchBar.jsx`
+- `/home/punk/Desktop/WEB/web ass 3/src/components/SortSelect.jsx`
+- `/home/punk/Desktop/WEB/web ass 3/src/components/FilterPanel.jsx`
+- `/home/punk/Desktop/WEB/web ass 3/src/utils/filterProducts.js`
+- `/home/punk/Desktop/WEB/web ass 3/src/pages/Shop.jsx`
+
+### What changed and why
+
+Added debounced case-insensitive search across product fields, combined category/age/price/stock filters, sorting options, and distinct no-match feedback. Filtering and sorting rules live outside JSX for reuse and testing.
+
+### Requirements covered
+
+- FR04: debounced search across name, brand, category, description, and tags.
+- FR05: combined filters and sort modes.
+- FR15: no-match state differs from an empty catalogue.
+- P3 foundation: controls have labels and a clear action.
+
+### Known issues and fixes
+
+- Filter state is local to Shop for now; URL and context persistence is scheduled for the P1 state-fix milestone.
+
+### Manual checks
+
+- Search for a brand, category, and tag.
+- Combine category with in-stock and price filters, then change sort.
+- Enter a query with no matches and clear it.
+
 ## Requirement status
 
 | Requirement | Status |

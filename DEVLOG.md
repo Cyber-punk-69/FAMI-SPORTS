@@ -295,6 +295,32 @@ Added debounced case-insensitive search across product fields, combined category
 - Combine category with in-stock and price filters, then change sort.
 - Enter a query with no matches and clear it.
 
+## Step 11 — Item details and not found
+
+### Files created or changed
+
+- `/home/punk/Desktop/WEB/web ass 3/src/pages/ItemDetails.jsx`
+- `/home/punk/Desktop/WEB/web ass 3/src/pages/NotFound.jsx`
+
+### What changed and why
+
+Connected the item route to the async catalogue, added invalid-ID feedback with a return link, and exposed product price, specifications, stock, quantity limit, age suitability, and delivery information.
+
+### Requirements covered
+
+- FR02: invalid `/items/:id` renders useful feedback and a `/shop` link.
+- FR06: detail pages show the required product and fulfilment information.
+- FR14: detail loading and retry states reuse the async loader states.
+
+### Known issues and fixes
+
+- Add-to-cart and option selection will be connected after CartContext and quantity rules are implemented.
+
+### Manual checks
+
+- Visit `/items/bat-01` and an invalid ID.
+- Confirm the invalid page does not throw and links back to Shop.
+
 ## Requirement status
 
 | Requirement | Status |

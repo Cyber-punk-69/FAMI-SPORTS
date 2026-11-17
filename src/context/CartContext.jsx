@@ -1,4 +1,5 @@
 import { createContext, useContext, useEffect, useMemo, useState } from 'react';
+import { products } from '../data/products.js';
 
 const STORAGE_KEY = 'fami-sports-cart';
 const CartContext = createContext(null);
@@ -12,6 +13,7 @@ function readStoredCart() {
 
 export function CartProvider({ children }) {
   const [items, setItems] = useState(readStoredCart);
+  const [message, setMessage] = useState('');
 
   useEffect(() => {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(items));
@@ -19,23 +21,39 @@ export function CartProvider({ children }) {
 
   const value = useMemo(() => ({
     items,
+    message,
     itemCount: items.reduce((total, item) => total + item.quantity, 0),
     addItem(productId, quantity = 1, options = {}) {
+      const product = products.find((item) => item.id === productId);
+      if (!product || product.stock === 0) {
+        setMessage('This product is out of stock.');
+        return;
+      }
       setItems((current) => {
         const existing = current.find((item) => item.productId === productId);
+        const nextQuantity = Math.min(5, product.stock, (existing?.quantity || 0) + quantity);
+        if (nextQuantity <= (existing?.quantity || 0)) {
+          setMessage(`Only ${product.stock} unit${product.stock === 1 ? '' : 's'} available.`);
+          return current;
+        }
+        setMessage('');
         if (existing) {
           return current.map((item) => (
             item.productId === productId
-              ? { ...item, quantity: Math.min(5, item.quantity + quantity), options }
+              ? { ...item, quantity: nextQuantity, options }
               : item
           ));
         }
-        return [...current, { productId, quantity: Math.min(5, quantity), options }];
+        return [...current, { productId, quantity: nextQuantity, options }];
       });
     },
     updateQuantity(productId, quantity) {
+      const product = products.find((item) => item.id === productId);
+      const limit = Math.min(5, product?.stock || 0);
+      if (quantity > limit) setMessage(`Only ${limit} unit${limit === 1 ? '' : 's'} available.`);
+      else setMessage('');
       setItems((current) => current
-        .map((item) => item.productId === productId ? { ...item, quantity: Math.min(5, Math.max(0, quantity)) } : item)
+        .map((item) => item.productId === productId ? { ...item, quantity: Math.min(limit, Math.max(0, quantity)) } : item)
         .filter((item) => item.quantity > 0));
     },
     removeItem(productId) {
@@ -43,8 +61,9 @@ export function CartProvider({ children }) {
     },
     clearCart() {
       setItems([]);
+      setMessage('');
     },
-  }), [items]);
+  }), [items, message]);
 
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>;
 }

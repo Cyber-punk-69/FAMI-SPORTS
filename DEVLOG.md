@@ -391,3 +391,24 @@ Established the bold red/black storefront system, responsive container, sticky a
 - Check keyboard focus and skip link.
 - Toggle the mobile menu at narrow widths.
 - Confirm the header remains visible while scrolling and the cart badge updates.
+
+## UI redesign — product imagery and stock-aware cards
+
+### Files changed
+
+- `src/components/ProductImage.jsx`
+- `src/components/ProductImage.module.css`
+- `src/components/ProductCard.jsx`
+- `src/components/ProductCard.module.css`
+- `src/context/CartContext.jsx`
+- `src/data/products.js`
+
+### What changed and why
+
+Added fixed 4:3 image frames with lazy loading and branded sport placeholders, unique image URLs, stock-aware add-to-cart behavior, low-stock badges, and product-card actions.
+
+### What to test
+
+- Confirm the intentionally missing image renders the dark product placeholder.
+- Add products from cards and verify the cart count.
+- Attempt to exceed stock and confirm the specific stock message.

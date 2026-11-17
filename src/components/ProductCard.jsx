@@ -1,25 +1,15 @@
-import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useCart } from '../context/CartContext.jsx';
+import { ProductImage } from './ProductImage.jsx';
 import styles from './ProductCard.module.css';
 
 export function ProductCard({ product }) {
-  const [imageFailed, setImageFailed] = useState(false);
+  const { addItem, message } = useCart();
+  const lowStock = product.stock > 0 && product.stock <= 3;
 
   return (
     <article className={styles.card}>
-      <Link to={`/items/${product.id}`} className={styles.imageLink}>
-        {product.image && !imageFailed ? (
-          <img
-            className={styles.image}
-            src={product.image}
-            alt={product.imageAlt || product.name}
-            onError={() => setImageFailed(true)}
-          />
-        ) : null}
-        <span className={styles.imageFallback} hidden={Boolean(product.image) && !imageFailed}>
-          Image unavailable
-        </span>
-      </Link>
+      <Link to={`/items/${product.id}`} className={styles.imageLink}><ProductImage product={product} /></Link>
       <div className={styles.content}>
         <p className={styles.category}>{product.category} · {product.brand}</p>
         <h2 className={styles.name}>{product.name}</h2>
@@ -28,9 +18,13 @@ export function ProductCard({ product }) {
           <div><dt>Size</dt><dd>{product.specs.size}</dd></div>
           <div><dt>Weight</dt><dd>{product.specs.weight}</dd></div>
         </dl>
-        <p className={product.stock === 0 ? styles.outOfStock : styles.stock}>
-          {product.stock === 0 ? 'Out of stock' : `${product.stock} available`}
-        </p>
+        {product.ageGroup.startsWith('Junior') ? <span className={styles.badge}>Junior</span> : null}
+        {product.stock === 0 ? <span className={styles.outOfStock}>Out of stock</span> : null}
+        {lowStock ? <span className={styles.lowStock}>Low stock</span> : null}
+        <button className={styles.addButton} type="button" disabled={product.stock === 0} onClick={() => addItem(product.id)}>
+          {product.stock === 0 ? 'Out of stock' : 'Add to cart'}
+        </button>
+        {message ? <span className={styles.message} role="status">{message}</span> : null}
       </div>
     </article>
   );

@@ -1,3 +1,3 @@
 export function Loader() {
-  return <p role="status">Loading products...</p>;
+  return <div role="status" aria-label="Loading products" className="skeletonGrid">{[1, 2, 3, 4].map((item) => <div className="skeletonCard" key={item} />)}</div>;
 }

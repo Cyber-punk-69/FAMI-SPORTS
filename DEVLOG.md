@@ -412,3 +412,32 @@ Added fixed 4:3 image frames with lazy loading and branded sport placeholders, u
 - Confirm the intentionally missing image renders the dark product placeholder.
 - Add products from cards and verify the cart count.
 - Attempt to exceed stock and confirm the specific stock message.
+
+## UI redesign — responsive page surfaces
+
+### Files changed
+
+- `src/pages/ItemDetails.jsx`
+- `src/pages/ItemDetails.module.css`
+- `src/pages/Cart.jsx`
+- `src/pages/Cart.module.css`
+- `src/pages/Checkout.jsx`
+- `src/pages/Checkout.module.css`
+- `src/pages/Confirmation.jsx`
+- `src/pages/Confirmation.module.css`
+- `src/pages/Shop.jsx`
+- `src/pages/Shop.module.css`
+- `src/components/ProductGrid.module.css`
+- `src/components/Loader.jsx`
+- `src/styles/global.css`
+- `src/components/Header.jsx`
+
+### What changed and why
+
+Redesigned the product detail, cart, checkout, confirmation, shop toolbar/sidebar, responsive product grid, and loading state surfaces for a professional sports-store presentation.
+
+### What to test
+
+- Check the product-to-cart-to-checkout-to-confirmation flow.
+- Check the cart free-delivery threshold and stock quantity limit.
+- Check 390px mobile navigation and 1280px product grid layout.

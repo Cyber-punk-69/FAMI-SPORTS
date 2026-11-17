@@ -1,15 +1,16 @@
-import { Link, useNavigate, useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { ErrorState } from '../components/ErrorState.jsx';
 import { Loader } from '../components/Loader.jsx';
 import { useProducts } from '../hooks/useProducts.js';
 import { useCart } from '../context/CartContext.jsx';
 import { useState } from 'react';
+import { ProductImage } from '../components/ProductImage.jsx';
+import styles from './ItemDetails.module.css';
 
 export function ItemDetails() {
   const { id } = useParams();
   const { products, loading, error, retry } = useProducts();
   const { addItem } = useCart();
-  const navigate = useNavigate();
   const [quantity, setQuantity] = useState(1);
   const [added, setAdded] = useState(false);
   const product = products.find((item) => item.id === id);
@@ -27,21 +28,26 @@ export function ItemDetails() {
   }
 
   return (
-    <article>
-      <p><Link to="/shop">Back to shop</Link></p>
+    <article className={styles.layout}>
+      <div className={styles.visual}><ProductImage product={product} /></div>
+      <div className={styles.info}>
+      <p className={styles.breadcrumb}><Link to="/shop">Shop</Link> / {product.category}</p>
+      <p className={styles.eyebrow}>{product.brand} · {product.category}</p>
       <h1>{product.name}</h1>
       <p>{product.description}</p>
-      <p>PKR {product.price.toLocaleString()}</p>
-      <p>{product.stock === 0 ? 'Out of stock' : `${product.stock} available`}</p>
-      <p>Maximum 5 units per order, limited by current stock.</p>
-      <p>Age suitability: {product.ageGroup}</p>
+      <p className={styles.price}>PKR {product.price.toLocaleString()}</p>
+      <span className={`${styles.stock} ${product.stock === 0 ? styles.outOfStock : ''}`}>
+        {product.stock === 0 ? 'Out of stock' : product.stock <= 3 ? `Low stock · ${product.stock} left` : 'In stock'}
+      </span>
+      <p className={styles.note}>Maximum 5 units per order, limited by current stock.</p>
+      <p className={styles.note}>Age suitability: {product.ageGroup}</p>
       <h2>Specifications</h2>
-      <dl>
+      <dl className={styles.specs}>
         <div><dt>Size</dt><dd>{product.specs.size}</dd></div>
         <div><dt>Weight</dt><dd>{product.specs.weight}</dd></div>
         <div><dt>Material</dt><dd>{product.specs.material}</dd></div>
       </dl>
-      <p>Delivery is available in Islamabad and Rawalpindi. Pickup is free.</p>
+      <p className={styles.note}>Delivery is available in Islamabad and Rawalpindi. Pickup is free.</p>
       {product.stock > 0 ? (
         <form onSubmit={(event) => {
           event.preventDefault();
@@ -53,9 +59,9 @@ export function ItemDetails() {
             onChange={(event) => setQuantity(Number(event.target.value))} />
           <button type="submit">Add to cart</button>
           {added ? <Link to="/cart">View cart</Link> : null}
-          <button type="button" onClick={() => navigate('/cart')} disabled={!added}>Go to cart</button>
         </form>
       ) : null}
+      </div>
     </article>
   );
 }

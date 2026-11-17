@@ -12,7 +12,7 @@ export function Header() {
       <a className={styles.skipLink} href="#main-content">Skip to content</a>
       <div className={styles.inner}>
         <NavLink className={styles.logo} to="/">FAMI SPORTS</NavLink>
-        <button className={styles.menuButton} type="button" aria-expanded={menuOpen} aria-controls="primary-navigation" onClick={() => setMenuOpen((open) => !open)}>
+        <button className={styles.menuButton} type="button" aria-label="Toggle menu" aria-expanded={menuOpen} aria-controls="primary-navigation" onClick={() => setMenuOpen((open) => !open)}>
           <span aria-hidden="true">☰</span>
           <span className={styles.srOnly}>Menu</span>
         </button>

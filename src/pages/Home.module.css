@@ -3,6 +3,7 @@
   color: var(--color-surface);
   background: var(--color-bg-dark);
   border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
 }
 
 .hero h1 {
@@ -47,10 +48,19 @@
   border: 1px solid #d6d6d6;
   background: var(--color-surface);
   font-weight: 700;
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-sm);
+  transition: transform 160ms ease, border-color 160ms ease;
+}
+
+.categories li:hover {
+  transform: translateY(-2px);
+  border-color: var(--red);
 }
 
 .delivery {
   padding: var(--space-6);
   border-left: 0.35rem solid var(--color-primary);
   background: var(--color-surface);
+  box-shadow: var(--shadow-sm);
 }

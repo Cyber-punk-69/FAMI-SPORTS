@@ -9,6 +9,7 @@ import { SortSelect } from '../components/SortSelect.jsx';
 import { useDebounce } from '../hooks/useDebounce.js';
 import { useProducts } from '../hooks/useProducts.js';
 import { filterAndSortProducts } from '../utils/filterProducts.js';
+import styles from './Shop.module.css';
 
 export function Shop() {
   const { products, loading, error, retry } = useProducts();
@@ -32,8 +33,11 @@ export function Shop() {
     <>
       <h1>Shop sports equipment</h1>
       <p>Browse equipment for cricket, football, badminton, tennis, and fitness.</p>
-      <SearchBar value={search} onChange={setSearch} />
-      <FilterPanel
+      <div className={styles.toolbar}><SearchBar value={search} onChange={setSearch} /><SortSelect
+        value={filters.sort}
+        onChange={(sort) => setFilters((current) => ({ ...current, sort }))}
+      /></div>
+      <div className={styles.content}><aside className={styles.filters}><FilterPanel
         filters={filters}
         onChange={(changes) => setFilters((current) => ({ ...current, ...changes }))}
         onClear={() => {
@@ -47,11 +51,8 @@ export function Shop() {
             sort: 'name',
           });
         }}
-      />
-      <SortSelect
-        value={filters.sort}
-        onChange={(sort) => setFilters((current) => ({ ...current, sort }))}
-      />
+      /></aside><div className={styles.grid}>
+      <p className={styles.results}>{visibleProducts.length} products</p>
       {loading ? <Loader /> : null}
       {!loading && error ? <ErrorState message={error.message} onRetry={retry} /> : null}
       {!loading && !error && products.length === 0 ? (
@@ -67,7 +68,7 @@ export function Shop() {
           action={hasFilters ? <button type="button" onClick={() => setSearch('')}>Clear search</button> : null}
         />
       ) : null}
-      {!loading && !error && visibleProducts.length > 0 ? <ProductGrid products={visibleProducts} /> : null}
+      {!loading && !error && visibleProducts.length > 0 ? <ProductGrid products={visibleProducts} /> : null}</div></div>
     </>
   );
 }

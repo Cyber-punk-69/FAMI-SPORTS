@@ -1,0 +1,5 @@
+.panel { max-width: 42rem; margin: 0 auto; padding: clamp(var(--space-6), 8vw, var(--space-12)); border-top: .5rem solid var(--red); border-radius: var(--radius-md); background: var(--white); box-shadow: var(--shadow-md); }
+.orderId { color: var(--grey-700); font-weight: 700; }
+.items { padding: 0; list-style: none; }
+.items li { display: flex; justify-content: space-between; gap: var(--space-3); padding: var(--space-2) 0; border-bottom: 1px solid var(--grey-300); }
+.continue { display: inline-flex; align-items: center; min-height: 44px; padding: var(--space-2) var(--space-4); border-radius: var(--radius-sm); color: var(--white); background: var(--red); font-weight: 800; text-decoration: none; }

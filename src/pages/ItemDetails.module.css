@@ -1,0 +1,18 @@
+.breadcrumb { margin: 0 0 var(--space-4); color: var(--grey-700); }
+.layout { display: grid; gap: var(--space-8); }
+.visual { border-radius: var(--radius-md); overflow: hidden; box-shadow: var(--shadow-md); }
+.info { display: flex; flex-direction: column; gap: var(--space-4); }
+.eyebrow { margin: 0; color: var(--red-dark); font-size: .85rem; font-weight: 800; text-transform: uppercase; letter-spacing: .08em; }
+.price { margin: 0; font-size: 2rem; font-weight: 800; }
+.stock { display: inline-block; align-self: flex-start; padding: var(--space-1) var(--space-2); border-radius: 999px; color: var(--success); background: #e8f5ed; font-weight: 700; }
+.outOfStock { color: var(--error); background: #ffe6eb; }
+.specs { display: grid; gap: var(--space-2); margin: 0; }
+.specs div { display: flex; justify-content: space-between; padding: var(--space-2) 0; border-bottom: 1px solid var(--grey-300); }
+.specs dd { margin: 0; color: var(--grey-700); }
+.purchase { display: flex; flex-wrap: wrap; align-items: end; gap: var(--space-3); }
+.purchase label { display: grid; gap: var(--space-1); font-weight: 700; }
+.purchase input { width: 5rem; min-height: 44px; padding: var(--space-2); border: 1px solid var(--grey-500); border-radius: var(--radius-sm); }
+.purchase button { min-height: 44px; padding: var(--space-2) var(--space-4); border: 0; border-radius: var(--radius-sm); color: var(--white); background: var(--red); font-weight: 800; }
+.purchase a { display: inline-flex; align-items: center; color: var(--red-dark); font-weight: 700; }
+.note { margin: 0; color: var(--grey-700); }
+@media (min-width: 48rem) { .layout { grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr); align-items: start; } .visual { position: sticky; top: 6rem; } }

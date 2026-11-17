@@ -1,4 +1,6 @@
 import { Link } from 'react-router-dom';
+import { ProductGrid } from '../components/ProductGrid.jsx';
+import { products } from '../data/products.js';
 import styles from './Home.module.css';
 
 const categories = ['Cricket', 'Football', 'Badminton', 'Tennis', 'Fitness'];
@@ -21,6 +23,10 @@ export function Home() {
       <section className={styles.delivery} aria-labelledby="delivery-heading">
         <h2 id="delivery-heading">Simple local fulfilment</h2>
         <p>Delivery is Rs. 250 in Islamabad and Rawalpindi, free from Rs. 5,000. Pickup is always free.</p>
+      </section>
+      <section aria-labelledby="featured-heading">
+        <h2 id="featured-heading">Featured equipment</h2>
+        <ProductGrid products={products.slice(0, 4)} />
       </section>
     </>
   );

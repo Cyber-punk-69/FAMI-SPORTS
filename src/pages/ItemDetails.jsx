@@ -1,11 +1,17 @@
-import { Link, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { ErrorState } from '../components/ErrorState.jsx';
 import { Loader } from '../components/Loader.jsx';
 import { useProducts } from '../hooks/useProducts.js';
+import { useCart } from '../context/CartContext.jsx';
+import { useState } from 'react';
 
 export function ItemDetails() {
   const { id } = useParams();
   const { products, loading, error, retry } = useProducts();
+  const { addItem } = useCart();
+  const navigate = useNavigate();
+  const [quantity, setQuantity] = useState(1);
+  const [added, setAdded] = useState(false);
   const product = products.find((item) => item.id === id);
 
   if (loading) return <Loader />;
@@ -36,6 +42,20 @@ export function ItemDetails() {
         <div><dt>Material</dt><dd>{product.specs.material}</dd></div>
       </dl>
       <p>Delivery is available in Islamabad and Rawalpindi. Pickup is free.</p>
+      {product.stock > 0 ? (
+        <form onSubmit={(event) => {
+          event.preventDefault();
+          addItem(product.id, quantity);
+          setAdded(true);
+        }}>
+          <label htmlFor="quantity">Quantity</label>
+          <input id="quantity" type="number" min="1" max={Math.min(5, product.stock)} value={quantity}
+            onChange={(event) => setQuantity(Number(event.target.value))} />
+          <button type="submit">Add to cart</button>
+          {added ? <Link to="/cart">View cart</Link> : null}
+          <button type="button" onClick={() => navigate('/cart')} disabled={!added}>Go to cart</button>
+        </form>
+      ) : null}
     </article>
   );
 }

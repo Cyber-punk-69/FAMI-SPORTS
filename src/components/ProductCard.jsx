@@ -1,22 +1,22 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import styles from './ProductCard.module.css';
 
 export function ProductCard({ product }) {
+  const [imageFailed, setImageFailed] = useState(false);
+
   return (
     <article className={styles.card}>
       <Link to={`/items/${product.id}`} className={styles.imageLink}>
-        {product.image ? (
+        {product.image && !imageFailed ? (
           <img
             className={styles.image}
             src={product.image}
-            alt={product.imageAlt}
-            onError={(event) => {
-              event.currentTarget.hidden = true;
-              event.currentTarget.nextElementSibling.hidden = false;
-            }}
+            alt={product.imageAlt || product.name}
+            onError={() => setImageFailed(true)}
           />
         ) : null}
-        <span className={styles.imageFallback} hidden={Boolean(product.image)}>
+        <span className={styles.imageFallback} hidden={Boolean(product.image) && !imageFailed}>
           Image unavailable
         </span>
       </Link>

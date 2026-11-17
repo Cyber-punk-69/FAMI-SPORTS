@@ -1,4 +1,7 @@
 .header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
   background: var(--color-bg-dark);
   color: var(--color-surface);
 }
@@ -28,14 +31,82 @@
   list-style: none;
 }
 
+.nav {
+  display: block;
+}
+
+.navOpen {
+  display: block;
+}
+
 .navigation a {
+  display: inline-flex;
+  align-items: center;
   color: var(--color-surface);
   text-decoration: none;
+  font-weight: 700;
 }
 
 .navigation a[aria-current='page'],
 .navigation a:hover {
   color: #ff6b70;
+  box-shadow: inset 0 -3px 0 var(--red);
+}
+
+.badge {
+  display: inline-grid;
+  min-width: 1.5rem;
+  min-height: 1.5rem;
+  margin-left: var(--space-1);
+  place-items: center;
+  border-radius: 999px;
+  color: var(--white);
+  background: var(--red);
+  font-size: 0.75rem;
+}
+
+.menuButton,
+.srOnly {
+  display: none;
+}
+
+@media (max-width: 44rem) {
+  .inner {
+    flex-wrap: wrap;
+  }
+
+  .menuButton {
+    display: block;
+    min-width: 44px;
+    border: 1px solid var(--grey-500);
+    border-radius: var(--radius-sm);
+    color: var(--white);
+    background: transparent;
+  }
+
+  .nav {
+    display: none;
+    width: 100%;
+  }
+
+  .navOpen {
+    display: block;
+    width: 100%;
+  }
+
+  .nav ul,
+  .navOpen ul {
+    flex-direction: column;
+  }
+}
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
 }
 
 .skipLink {

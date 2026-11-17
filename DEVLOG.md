@@ -370,3 +370,24 @@ Replaced the route placeholder with an original FAMI SPORTS hero, sport categori
 | FR17 | Not started |
 | FR18 | Not started |
 | FR19 | Not started |
+
+## UI redesign — shared sports storefront foundation
+
+### Files changed
+
+- `src/styles/tokens.css`
+- `src/styles/global.css`
+- `src/components/Layout.module.css`
+- `src/components/Header.jsx`
+- `src/components/Header.module.css`
+- `src/components/Footer.jsx`
+
+### What changed and why
+
+Established the bold red/black storefront system, responsive container, sticky accessible navigation with mobile menu and cart badge, stronger focus states, and delivery/photo-credit footer content.
+
+### What to test
+
+- Check keyboard focus and skip link.
+- Toggle the mobile menu at narrow widths.
+- Confirm the header remains visible while scrolling and the cart badge updates.

@@ -43,7 +43,7 @@ export function FilterPanel({ filters, onChange, onClear }) {
           onChange={(event) => onChange({ maxPrice: event.target.value })}
         />
       </label>
-      <label>
+      <label className="checkboxLabel">
         <input
           type="checkbox"
           checked={filters.inStockOnly}

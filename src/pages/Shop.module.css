@@ -1,12 +1,22 @@
-.toolbar { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: var(--space-3); margin: var(--space-6) 0; }
-.results { color: var(--grey-700); }
-.filters { margin-bottom: var(--space-6); padding: var(--space-4); border: 1px solid var(--grey-300); border-radius: var(--radius-md); background: var(--white); }
-.filters fieldset { min-width: 0; width: 100%; margin: 0; padding: 0; border: 0; }
-.filters legend { font-weight: 800; }
-.filters label { display: grid; gap: var(--space-1); margin: var(--space-3) 0; font-weight: 700; }
-.filters :global(.checkboxLabel) { display: flex; align-items: center; gap: var(--space-2); }
-.filters :global(.checkboxLabel) input { width: 2.5rem; min-height: 2.5rem; margin: 0; flex: 0 0 auto; }
-.filters input, .filters select { width: 100%; min-width: 0; min-height: 44px; padding: var(--space-2); border: 1px solid var(--grey-500); border-radius: var(--radius-sm); }
-.filters button { min-height: 44px; padding: var(--space-2) var(--space-3); border: 1px solid var(--red); border-radius: var(--radius-sm); color: var(--red-dark); background: transparent; font-weight: 700; }
-.grid { min-width: 0; }
-@media (min-width: 48rem) { .content { display: grid; grid-template-columns: 15rem 1fr; gap: var(--space-6); align-items: start; } .filters { position: sticky; top: 6rem; } }
+.toolbar { display: grid; gap: var(--space-4); margin-bottom: var(--space-6); padding: var(--space-4); border: 1px solid var(--line); border-radius: var(--radius-md); background: var(--surface); }
+.filterToggle { width: 100%; }
+.content { display: grid; gap: var(--space-6); }
+.filters { display: none; }
+.filtersOpen { display: block; }
+.results { min-width: 0; }
+.cartStrip { margin-bottom: var(--space-4); }
+.chips { display: flex; flex-wrap: wrap; gap: var(--space-2); margin: 0 0 var(--space-4); padding: 0; list-style: none; }
+.chips button { display: inline-flex; align-items: center; gap: var(--space-2); min-height: 44px; padding: 0 var(--space-4); border: 1px solid var(--red); border-radius: 999px; color: var(--text); background: rgb(227 18 31 / 12%); font-size: 0.85rem; font-weight: 600; }
+.chips button:hover { background: var(--red); }
+.count { margin: 0 0 var(--space-4); color: var(--text-muted); font-size: 0.9rem; }
+.relax { display: grid; gap: var(--space-2); margin: 0; padding: 0; list-style: none; }
+
+@media (min-width: 48rem) {
+  .toolbar { grid-template-columns: 2fr 1fr; }
+  .toolbar .filterToggle { display: none; }
+}
+
+@media (min-width: 62rem) {
+  .content { grid-template-columns: 16.5rem 1fr; align-items: start; }
+  .filters { position: sticky; top: 8rem; display: block; }
+}

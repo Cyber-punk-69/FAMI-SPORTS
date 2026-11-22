@@ -1,9 +1,9 @@
-export function EmptyState({ title, message, action }) {
+export function EmptyState({ title, message, children }) {
   return (
-    <section>
+    <section className="statePanel">
       <h2>{title}</h2>
       <p>{message}</p>
-      {action}
+      {children}
     </section>
   );
 }

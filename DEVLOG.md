@@ -349,27 +349,7 @@ Replaced the route placeholder with an original FAMI SPORTS hero, sport categori
 
 ## Requirement status
 
-| Requirement | Status |
-|---|---|
-| FR01 | Not started |
-| FR02 | Not started |
-| FR03 | Not started |
-| FR04 | Not started |
-| FR05 | Not started |
-| FR06 | Not started |
-| FR07 | Not started |
-| FR08 | Not started |
-| FR09 | Not started |
-| FR10 | Not started |
-| FR11 | Not started |
-| FR12 | Not started |
-| FR13 | Not started |
-| FR14 | Not started |
-| FR15 | Not started |
-| FR16 | Not started |
-| FR17 | Not started |
-| FR18 | Not started |
-| FR19 | Not started |
+All FR01–FR18 implemented (see README concept map); FR19 needs deploy + public repo by student.
 
 ## UI redesign — shared sports storefront foundation
 
@@ -441,3 +421,8 @@ Redesigned the product detail, cart, checkout, confirmation, shop toolbar/sideba
 - Check the product-to-cart-to-checkout-to-confirmation flow.
 - Check the cart free-delivery threshold and stock quantity limit.
 - Check 390px mobile navigation and 1280px product grid layout.
+
+## Final milestone — rules, tests, edge cases, premium red/black redesign
+
+- Added `src/rules/*` (quantity, age, delivery), `tests/quantityRule.test.js`, shared `ProductsContext`, URL+localStorage filters, cart reconciliation, validated checkout, demo controls, README, DECISIONS.md, docs/EDGE_CASES.md.
+- Restyled with strict red/black tokens, self-hosted fonts, SVG sport icons, monochrome imagery.

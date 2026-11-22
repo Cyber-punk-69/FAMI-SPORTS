@@ -1,57 +1,41 @@
-const categories = ['Cricket', 'Football', 'Badminton', 'Tennis', 'Fitness'];
-const ageGroups = ['Adult', 'Junior (Teens 13-17)'];
+import styles from './FilterPanel.module.css';
 
-export function FilterPanel({ filters, onChange, onClear }) {
+export const CATEGORIES = ['Cricket', 'Football', 'Badminton', 'Tennis', 'Fitness'];
+const AGE_GROUPS = ['Adult', 'Junior (Teens 13-17)'];
+
+export function FilterPanel({ filters, onChange, onClear, hasFilters }) {
   return (
-    <fieldset>
+    <fieldset className={styles.panel}>
       <legend>Filter products</legend>
-      <label>
-        Category
-        <select
-          value={filters.category}
-          onChange={(event) => onChange({ category: event.target.value })}
-        >
-          <option value="">All categories</option>
-          {categories.map((category) => <option key={category} value={category}>{category}</option>)}
+      <div className="field">
+        <label htmlFor="filter-category">Sport</label>
+        <select id="filter-category" value={filters.category} onChange={(event) => onChange({ category: event.target.value })}>
+          <option value="">All sports</option>
+          {CATEGORIES.map((category) => <option key={category} value={category}>{category}</option>)}
         </select>
-      </label>
-      <label>
-        Age group
-        <select
-          value={filters.ageGroup}
-          onChange={(event) => onChange({ ageGroup: event.target.value })}
-        >
+      </div>
+      <div className="field">
+        <label htmlFor="filter-age">Age group</label>
+        <select id="filter-age" value={filters.ageGroup} onChange={(event) => onChange({ ageGroup: event.target.value })}>
           <option value="">All ages</option>
-          {ageGroups.map((ageGroup) => <option key={ageGroup} value={ageGroup}>{ageGroup}</option>)}
+          {AGE_GROUPS.map((ageGroup) => <option key={ageGroup} value={ageGroup}>{ageGroup}</option>)}
         </select>
+      </div>
+      <div className={styles.priceRow}>
+        <div className="field">
+          <label htmlFor="filter-min">Min price (Rs.)</label>
+          <input id="filter-min" type="number" inputMode="numeric" min="0" value={filters.minPrice} onChange={(event) => onChange({ minPrice: event.target.value })} />
+        </div>
+        <div className="field">
+          <label htmlFor="filter-max">Max price (Rs.)</label>
+          <input id="filter-max" type="number" inputMode="numeric" min="0" value={filters.maxPrice} onChange={(event) => onChange({ maxPrice: event.target.value })} />
+        </div>
+      </div>
+      <label className="check" htmlFor="filter-stock">
+        <input id="filter-stock" type="checkbox" checked={filters.inStockOnly} onChange={(event) => onChange({ inStockOnly: event.target.checked })} />
+        <span>In stock only</span>
       </label>
-      <label>
-        Minimum price
-        <input
-          type="number"
-          min="0"
-          value={filters.minPrice}
-          onChange={(event) => onChange({ minPrice: event.target.value })}
-        />
-      </label>
-      <label>
-        Maximum price
-        <input
-          type="number"
-          min="0"
-          value={filters.maxPrice}
-          onChange={(event) => onChange({ maxPrice: event.target.value })}
-        />
-      </label>
-      <label className="checkboxLabel">
-        <input
-          type="checkbox"
-          checked={filters.inStockOnly}
-          onChange={(event) => onChange({ inStockOnly: event.target.checked })}
-        />
-        In stock only
-      </label>
-      <button type="button" onClick={onClear}>Clear filters</button>
+      <button className="btn btnSecondary" type="button" onClick={onClear} disabled={!hasFilters}>Clear all filters</button>
     </fieldset>
   );
 }

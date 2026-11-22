@@ -1,13 +1,6 @@
 import { useState } from 'react';
+import { SportIcon } from './SportIcon.jsx';
 import styles from './ProductImage.module.css';
-
-const icons = {
-  Cricket: '🏏',
-  Football: '⚽',
-  Badminton: '🏸',
-  Tennis: '🎾',
-  Fitness: '🏋',
-};
 
 export function ProductImage({ product, className = '' }) {
   const [failed, setFailed] = useState(!product.image);
@@ -24,9 +17,9 @@ export function ProductImage({ product, className = '' }) {
           onError={() => setFailed(true)}
         />
       ) : (
-        <div className={styles.placeholder} role="img" aria-label={product.name}>
-          <span aria-hidden="true">{icons[product.category] || '🏆'}</span>
-          <strong>{product.name}</strong>
+        <div className={styles.placeholder} role="img" aria-label={`${product.name} (image unavailable)`}>
+          <SportIcon sport={product.category} size={56} />
+          <span>Image unavailable</span>
         </div>
       )}
     </div>

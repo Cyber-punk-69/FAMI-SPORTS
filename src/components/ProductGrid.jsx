@@ -3,10 +3,10 @@ import styles from './ProductGrid.module.css';
 
 export function ProductGrid({ products }) {
   return (
-    <div className={styles.grid}>
+    <ul className={styles.grid}>
       {products.map((product) => (
-        <ProductCard key={product.id} product={product} />
+        <li key={product.id}><ProductCard product={product} /></li>
       ))}
-    </div>
+    </ul>
   );
 }

@@ -1,47 +1,110 @@
 import { Link } from 'react-router-dom';
 import { EmptyState } from '../components/EmptyState.jsx';
+import { ErrorState } from '../components/ErrorState.jsx';
+import { Loader } from '../components/Loader.jsx';
 import { ProductImage } from '../components/ProductImage.jsx';
+import { QuantityControl } from '../components/QuantityControl.jsx';
+import { OrderSummary } from '../components/OrderSummary.jsx';
 import { useCart } from '../context/CartContext.jsx';
-import { products } from '../data/products.js';
+import { useProducts } from '../context/ProductsContext.jsx';
 import styles from './Cart.module.css';
 
 export function Cart() {
-  const { items, updateQuantity, removeItem, message } = useCart();
-  const cartItems = items.map((item) => ({ ...item, product: products.find((product) => product.id === item.productId) })).filter((item) => item.product);
-  const subtotal = cartItems.reduce((sum, item) => sum + item.product.price * item.quantity, 0);
-  const delivery = subtotal >= 5000 ? 0 : 250;
-  const remaining = Math.max(0, 5000 - subtotal);
+  const { loading, error, reload } = useProducts();
+  const { items, lines, issues, subtotal, notice, dismissNotice, setQuantity, setOption, removeItem, fixIssues } = useCart();
 
-  if (!cartItems.length) return <EmptyState title="Your cart is empty" message="Your next great session starts with the right gear." action={<Link to="/shop">Browse equipment</Link>} />;
+  if (loading && items.length) return <Loader label="Checking your cart against current stock" />;
+  if (error && items.length) return <ErrorState message={error.message} onRetry={reload} />;
+
+  if (!items.length) {
+    return (
+      <EmptyState title="Your cart is empty" message="Pick up some gear and it will wait here, even if you close the tab.">
+        <Link className="btn btnPrimary" to="/shop">Browse equipment</Link>
+      </EmptyState>
+    );
+  }
 
   return (
-    <section>
-      <h1>Your cart</h1>
-      {message ? <p role="alert">{message}</p> : null}
-      <div className={styles.layout}>
-        <div className={styles.list}>
-          {cartItems.map(({ product, quantity }) => (
-            <article className={styles.row} key={product.id}>
-              <div className={styles.thumb}><ProductImage product={product} /></div>
-              <div><h2>{product.name}</h2><p>PKR {product.price.toLocaleString()} each</p></div>
-              <div className={styles.controls}>
-                <label htmlFor={`quantity-${product.id}`}>Quantity</label>
-                <input id={`quantity-${product.id}`} type="number" min="0" max={Math.min(5, product.stock)} value={quantity} onChange={(event) => updateQuantity(product.id, Number(event.target.value))} />
-                <strong>PKR {(product.price * quantity).toLocaleString()}</strong>
-                <button className={styles.remove} type="button" onClick={() => removeItem(product.id)}>Remove</button>
-              </div>
-            </article>
-          ))}
+    <>
+      <header className="pageHead">
+        <p className="eyebrow">Step 1 of 3 · Review</p>
+        <h1>Your cart</h1>
+      </header>
+
+      {notice ? (
+        <div className="alert alertInfo" role="status">
+          <p>{notice}</p>
+          <button className="btn btnSecondary" type="button" onClick={dismissNotice}>Dismiss</button>
         </div>
-        <aside className={styles.summary}>
-          <h2>Order summary</h2>
-          <p>Items <strong>PKR {subtotal.toLocaleString()}</strong></p>
-          <p>Delivery <strong>{delivery ? `PKR ${delivery}` : 'Free'}</strong></p>
-          {remaining ? <><p>Add Rs. {remaining.toLocaleString()} for free delivery.</p><div className={styles.progress} aria-label="Progress toward free delivery"><span className={styles.progressPartial} /></div></> : <p>Free delivery unlocked</p>}
-          <h2>Total: PKR {(subtotal + delivery).toLocaleString()}</h2>
-          <Link className={styles.checkout} to="/checkout">Checkout</Link>
+      ) : null}
+
+      {issues.length > 0 ? (
+        <div className="alert" role="alert">
+          <div>
+            <p><strong>Your cart needs attention.</strong> Availability changed since you added these items:</p>
+            <ul className={styles.issueList}>
+              {issues.map((line) => (
+                <li key={line.productId}>{line.product ? line.product.name : line.productId}: {line.issue.message}</li>
+              ))}
+            </ul>
+          </div>
+          <button className="btn btnPrimary" type="button" onClick={fixIssues}>Fix my cart</button>
+        </div>
+      ) : null}
+
+      <div className={styles.layout}>
+        <ul className={styles.list}>
+          {lines.map((line) => {
+            const { product } = line;
+            if (!product) {
+              return (
+                <li key={line.productId} className={`${styles.row} ${styles.rowIssue}`}>
+                  <p>Unknown product “{line.productId}” — {line.issue.message}</p>
+                  <button className="btn btnSecondary" type="button" onClick={() => removeItem(line.productId)}>Remove</button>
+                </li>
+              );
+            }
+            return (
+              <li key={product.id} className={`${styles.row} ${line.issue ? styles.rowIssue : ''}`}>
+                <Link to={`/items/${product.id}`} className={styles.thumb} aria-label={`View ${product.name}`}><ProductImage product={product} /></Link>
+                <div className={styles.info}>
+                  <h2><Link to={`/items/${product.id}`}>{product.name}</Link></h2>
+                  <p className={styles.unit}>Rs. {product.price.toLocaleString()} each</p>
+                  {line.issue ? <p className="fieldError">⚠ {line.issue.message}</p> : null}
+                  {Object.entries(product.options ?? {}).map(([key, values]) => (
+                    <div className={`field ${styles.option}`} key={key}>
+                      <label htmlFor={`${product.id}-${key}`}>{key === 'grip' ? 'Grip colour' : key.charAt(0).toUpperCase() + key.slice(1)}</label>
+                      <select id={`${product.id}-${key}`} value={line.options[key] ?? values[0]} onChange={(event) => setOption(product.id, key, event.target.value)}>
+                        {values.map((value) => <option key={value}>{value}</option>)}
+                      </select>
+                    </div>
+                  ))}
+                </div>
+                <div className={styles.controls}>
+                  <QuantityControl
+                    value={line.quantity}
+                    stock={product.stock}
+                    revertOnBlur
+                    onChange={(quantity) => { if (quantity !== null) setQuantity(product.id, quantity); }}
+                  />
+                  <p className={styles.lineTotal}>Rs. {line.lineTotal.toLocaleString()}</p>
+                  <button className={`btn btnGhost ${styles.remove}`} type="button" onClick={() => removeItem(product.id)} aria-label={`Remove ${product.name} from cart`}>Remove</button>
+                </div>
+              </li>
+            );
+          })}
+        </ul>
+
+        <aside className={styles.summary} aria-label="Order summary">
+          <OrderSummary subtotal={subtotal} fulfilment="delivery" showProgress />
+          {issues.length > 0 ? (
+            <p className="fieldError" role="status">Resolve the items above to continue.</p>
+          ) : (
+            <Link className="btn btnPrimary btnLarge" to="/checkout">Checkout →</Link>
+          )}
+          <Link className="btn btnSecondary" to="/shop">Continue shopping</Link>
         </aside>
       </div>
-    </section>
+    </>
   );
 }

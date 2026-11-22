@@ -1,0 +1,12 @@
+.summary { display: grid; gap: var(--space-3); }
+.summary h2 { margin: 0; font-size: 1.8rem; }
+.summary dl { display: grid; gap: var(--space-2); margin: 0; }
+.summary dl div { display: flex; justify-content: space-between; gap: var(--space-4); }
+.summary dt { color: var(--text-muted); }
+.summary dd { margin: 0; font-weight: 700; }
+.total { padding-top: var(--space-3); border-top: 1px solid var(--line-strong); }
+.total dt { color: var(--text); font-family: var(--font-display); font-size: 1.4rem; font-weight: 800; letter-spacing: 0.05em; text-transform: uppercase; }
+.total dd { color: var(--white); font-family: var(--font-display); font-size: 2rem; }
+.reason { margin: 0; color: var(--text-muted); font-size: 0.85rem; }
+.bar { height: 0.5rem; overflow: hidden; border-radius: 999px; background: var(--surface-2); border: 1px solid var(--line-strong); }
+.bar span { display: block; height: 100%; background: var(--red); transition: width 300ms ease; }

@@ -1,13 +1,15 @@
 export function SearchBar({ value, onChange }) {
   return (
-    <label>
-      Search products
+    <div className="field">
+      <label htmlFor="shop-search">Search products</label>
       <input
+        id="shop-search"
         type="search"
         value={value}
         onChange={(event) => onChange(event.target.value)}
-        placeholder="Search by name, brand, or sport"
+        placeholder="Bat, football, KickLab…"
+        autoComplete="off"
       />
-    </label>
+    </div>
   );
 }
